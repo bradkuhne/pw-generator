@@ -22,12 +22,17 @@ var numericYorN = null;
 var spCharYorN = null;
 var LCLettersRandomNbr = 0;
 var pwCombined = null;
+var UCLettersRandomNbr = null;
+var specialCharsNbr = null;
+var numbersNbr = null;
 
 
 
 
 // prompted for the length of the password between 8 and 128 characters
 function askCount() {
+  pwCombined = null;
+  charCount = 0;
   var nbrChars = prompt("How many characters do you want to use for your password?  Pick a number between 8 and 128.");
   if (nbrChars != null) {
     if (nbrChars >= 8 & nbrChars <= 128){
@@ -140,6 +145,7 @@ function generatePassword () {
   console.log ("this is the password: " + pwCombined);
   // function stopWithError()  {
   console.log ("At end");
+  writePassword();
   // }
    // stopWithError();
 }
@@ -162,7 +168,7 @@ function genEachChar() {
     case 2:
       if (charUC) {
         console.log ("will run UPPERCASE code");
-        lowerCaseCode();
+        upperCaseCode();
       } else {
           console.log ("will regenerate character type because type chosen was not requested by user.");
           genEachChar();
@@ -171,7 +177,7 @@ function genEachChar() {
     case 3:
       if (numericYorN) {
         console.log ("will run numeric code");
-        lowerCaseCode();
+        numericCode();
       } else {
           console.log ("will regenerate character type because type chosen was not requested by user.");
           genEachChar();
@@ -180,7 +186,7 @@ function genEachChar() {
     case 4:
       if (spCharYorN) {
         console.log ("will run special character code");
-        lowerCaseCode();
+        specialCode();
       } else {
           console.log ("will regenerate character type because type chosen was not requested by user.");
           genEachChar();
@@ -200,44 +206,73 @@ function lowerCaseCode() {
   if (!pwCombined) {
     pwCombined = pwLCLetters[LCLettersRandomNbr];
     console.log ("First letter " + pwCombined);  
-} else {
-    pwCombined = pwCombined + pwLCLetters[LCLettersRandomNbr];
-    console.log (pwCombined);
+  } else {
+      pwCombined = pwCombined + pwLCLetters[LCLettersRandomNbr];
+      console.log (pwCombined);
+  }
 }
+//Use random number to select a character from the upper case array. 
+function upperCaseCode() {
+  UCLettersRandomNbr = Math.floor((Math.random()*pwUCLetters.length)); // 0 to 25
+  console.log ("this is the value of the array spot that will be used: " + UCLettersRandomNbr);
+  console.log ("This is the letter chosen" + pwUCLetters[UCLettersRandomNbr])
+  console.log ("Value of pwCombined: " + pwCombined);
   
-  
-  // if (pwCombined != null) {
-  //     pwCombined = pwCombined + LCLettersRandomNbr[LCLettersRandomNbr];
-  //     console.log (pwCombined);
-  // } else {
-  //     pwCombined = LCLettersRandomNbr[LCLettersRandomNbr];
-  //     console.log (pwCombined);
-  // }
+  if (!pwCombined) {
+    pwCombined = pwUCLetters[UCLettersRandomNbr];
+    console.log ("UC First letter " + pwCombined);  
+  } else {
+      pwCombined = pwCombined + pwUCLetters[UCLettersRandomNbr];
+      console.log (pwCombined);
+  }
 }
 
-
-
+//Use random number to select a number from the numeric array. 
+function numericCode() {
+  numbersNbr = Math.floor((Math.random()*pwNumbers.length)); // 0 to 25
+  console.log ("this is the value of the array spot that will be used: " + numbersNbr);
+  console.log ("This is the letter chosen" + pwNumbers[numbersNbr])
+  console.log ("Value of pwCombined: " + pwCombined);
+  
+  if (!pwCombined) {
+    pwCombined = pwNumbers[NumbersNbr];
+    console.log ("Numberic First number " + pwCombined);  
+  } else {
+      pwCombined = pwCombined + pwNumbers[numbersNbr];
+      console.log (pwCombined);
+  }
+}
+//Use random number to select a number from the numeric array. 
+function specialCode() {
+  specialCharsNbr = Math.floor((Math.random()*pwSpecialChars.length)); // 0 to 25
+  console.log ("this is the value of the array spot that will be used: " + specialCharsNbr);
+  console.log ("This is the letter chosen" + pwSpecialChars[specialCharsNbr])
+  console.log ("Value of pwCombined: " + pwCombined);
+  
+  if (!pwCombined) {
+    pwCombined = pwSpecialChars[specialCharsNbr];
+    console.log ("First special character " + pwCombined);  
+  } else {
+      pwCombined = pwCombined + pwSpecialChars[specialCharsNbr];
+      console.log (pwCombined);
+  }
+}
 // a password is generated that matches the selected criteria
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
-
-// Start prompt sequence
-console.log ("about to ask count");
-askCount();
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  // var password = generatePassword();
+  var password = pwCombined;
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// Add event listener to generate button to start dialouge and ultimately generate and display passowrd
+// generateBtn.addEventListener("click", writePassword);
+console.log ("Should show page and ask count");
+generateBtn.addEventListener("click", askCount);
