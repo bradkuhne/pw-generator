@@ -1,6 +1,6 @@
 # Password Generator Starter Code
 
-URL of deployed application:
+URL of deployed application: https://bradkuhne.github.io/pw-generator/
 
 URL of Git Hub repository: https://github.com/bradkuhne/pw-generator
 
