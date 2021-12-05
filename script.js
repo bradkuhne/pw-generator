@@ -21,6 +21,7 @@ var charUC = null;
 var numericYorN = null;
 var spCharYorN = null;
 var LCLettersRandomNbr = 0;
+var pwCombined = null;
 
 
 
@@ -136,6 +137,7 @@ function generatePassword () {
     genEachChar();
   }
   console.log ("out of for loop")
+  console.log ("this is the password: " + pwCombined);
   // function stopWithError()  {
   console.log ("At end");
   // }
@@ -192,6 +194,25 @@ function genEachChar() {
 function lowerCaseCode() {
   LCLettersRandomNbr = Math.floor((Math.random()*pwLCLetters.length)); // 0 to 25
   console.log ("this is the value of the array spot that will be used: " + LCLettersRandomNbr);
+  console.log ("This is the letter chosen" + pwLCLetters[LCLettersRandomNbr])
+  console.log ("Value of pwCombined: " + pwCombined);
+  
+  if (!pwCombined) {
+    pwCombined = pwLCLetters[LCLettersRandomNbr];
+    console.log ("First letter " + pwCombined);  
+} else {
+    pwCombined = pwCombined + pwLCLetters[LCLettersRandomNbr];
+    console.log (pwCombined);
+}
+  
+  
+  // if (pwCombined != null) {
+  //     pwCombined = pwCombined + LCLettersRandomNbr[LCLettersRandomNbr];
+  //     console.log (pwCombined);
+  // } else {
+  //     pwCombined = LCLettersRandomNbr[LCLettersRandomNbr];
+  //     console.log (pwCombined);
+  // }
 }
 
 
