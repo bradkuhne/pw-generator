@@ -20,6 +20,8 @@ var charLC = null;
 var charUC = null;
 var numericYorN = null;
 var spCharYorN = null;
+var LCLettersRandomNbr = 0;
+
 
 
 
@@ -131,44 +133,7 @@ function generatePassword () {
   console.log ("value of charCount ", charCount );
   for (let i = 0; i < charCount; i++) {
     console.log ("Index of # of characters: ", i, " and number entered: ", charCount);
-
-     // generate random number for type of character for this digit.  there are 4 possible choices: 1) lc, 2) UC, 3) numeric, 4) special character
-    charType = Math.floor(Math.random() * 4) + 1;
-    console.log ("Value of character type: " + charType);
-    console.log ("case 1: " + charLC + " case 2: " + charUC + " case 3: " + numericYorN + " case 4: " + spCharYorN);
-    switch (charType) {
-      case 1:
-        if (charLC) {
-          console.log ("will run lowecase code");
-        } else {
-            console.log ("will regenerate character type because type chosen was not requested by user.");
-        }
-        break;
-      case 2:
-        if (charUC) {
-          console.log ("will run UPPERCASE code");
-        } else {
-            console.log ("will regenerate character type because type chosen was not requested by user.");
-        }
-         break;
-      case 3:
-        if (numericYorN) {
-          console.log ("will run numeric code");
-        } else {
-            console.log ("will regenerate character type because type chosen was not requested by user.");
-        }
-        break;
-      case 4:
-        if (spCharYorN) {
-          console.log ("will run special character code");
-        } else {
-            console.log ("will regenerate character type because type chosen was not requested by user.");
-        }
-        break;
-      default:
-        console.log ("this is an error");
-    }
-     
+    genEachChar();
   }
   console.log ("out of for loop")
   // function stopWithError()  {
@@ -176,12 +141,58 @@ function generatePassword () {
   // }
    // stopWithError();
 }
-// } 
 
-
-
-
-
+function genEachChar() {
+    // generate random number for type of character for this digit.  there are 4 possible choices: 1) lc, 2) UC, 3) numeric, 4) special character
+  charType = Math.floor(Math.random() * 4) + 1;
+  console.log ("Value of character type: " + charType);
+  console.log ("case 1: " + charLC + " case 2: " + charUC + " case 3: " + numericYorN + " case 4: " + spCharYorN);
+  switch (charType) {
+    case 1:
+      if (charLC) {
+        console.log ("will run lowecase code");
+        lowerCaseCode();
+      } else {
+          console.log ("will regenerate character type because type chosen was not requested by user.");
+          genEachChar();
+      }
+      break;
+    case 2:
+      if (charUC) {
+        console.log ("will run UPPERCASE code");
+        lowerCaseCode();
+      } else {
+          console.log ("will regenerate character type because type chosen was not requested by user.");
+          genEachChar();
+      }
+        break;
+    case 3:
+      if (numericYorN) {
+        console.log ("will run numeric code");
+        lowerCaseCode();
+      } else {
+          console.log ("will regenerate character type because type chosen was not requested by user.");
+          genEachChar();
+      }
+      break;
+    case 4:
+      if (spCharYorN) {
+        console.log ("will run special character code");
+        lowerCaseCode();
+      } else {
+          console.log ("will regenerate character type because type chosen was not requested by user.");
+          genEachChar();
+      }
+      break;
+    default:
+      console.log ("this is an error");
+  }
+}
+//Use random number to select a character from the lower case array. 
+function lowerCaseCode() {
+  LCLettersRandomNbr = Math.floor((Math.random()*pwLCLetters.length)); // 0 to 25
+  console.log ("this is the value of the array spot that will be used: " + LCLettersRandomNbr);
+}
 
 
 
